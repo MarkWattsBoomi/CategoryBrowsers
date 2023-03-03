@@ -1,0 +1,19 @@
+.cats-crumb {
+    margin-right: 0.5rem;
+}
+
+.cats-crumb-label {
+    color: #2054d3;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cats-crumb-label:hover {
+    text-decoration: underline;
+}
+
+.cats-crumb-sep {
+    color: #2054d3;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}

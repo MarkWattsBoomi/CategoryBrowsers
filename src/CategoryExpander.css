@@ -1,0 +1,13 @@
+.cat-expand {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 60vh;
+    z-index: 10000;
+}

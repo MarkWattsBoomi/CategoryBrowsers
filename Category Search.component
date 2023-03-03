@@ -1,0 +1,46 @@
+{
+  "attributes": {
+    "searchOutcomeName": "The name of the outcome to trigger when the user selectes to search.",
+    "selectOutcomeName": "The name of the outcome to trigger when the user selects a category.",
+    "searchStringFieldName": "The name of a Flow value to receive the user entered search string."
+  },
+  "configurationEditors": [
+    "LABEL",
+    "DATA_SOURCE_FILTER",
+    "DATA_SOURCE_LIST",
+    "DATA_PRESENTATION",
+    "STATE_VALUE"
+  ],
+  "dateCreated": "0001-01-01T00:00:00+00:00",
+  "dateModified": "2023-03-03T11:43:02.665657+00:00",
+  "designTimeImageURL": null,
+  "designTimeRenderType": null,
+  "developerName": "Category Search",
+  "developerSummary": "Displays a search tool to alow browseing and searching of categories",
+  "elementType": "CUSTOM_PAGE_COMPONENT",
+  "icon": "Browser",
+  "id": "a40ea816-5b99-42cb-b735-ab13ee38c4c9",
+  "key": "categorybrowser",
+  "legacyScriptURL": "http://localhost:8080/categoryfilters.js",
+  "legacyStyleSheetURL": "http://localhost:8080/categoryfilters.css",
+  "scriptURL": null,
+  "styleSheetURL": null,
+  "whoCreated": {
+    "email": "markwatts@boomi.com",
+    "firstName": "Mark",
+    "id": "22dcefc8-b407-4974-8044-327cb44b134e",
+    "lastName": "Watts"
+  },
+  "whoModified": {
+    "email": "markwatts@boomi.com",
+    "firstName": "Mark",
+    "id": "22dcefc8-b407-4974-8044-327cb44b134e",
+    "lastName": "Watts"
+  },
+  "whoOwner": {
+    "email": "markwatts@boomi.com",
+    "firstName": "Mark",
+    "id": "22dcefc8-b407-4974-8044-327cb44b134e",
+    "lastName": "Watts"
+  }
+}

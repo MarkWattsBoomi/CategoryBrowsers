@@ -1,0 +1,22 @@
+.cat-expand-sec {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-expand-sec-title {
+    color: #2054d3;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cat-expand-sec-body {
+    
+}
+
+.cat-expand-sec-item {
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+}

@@ -1,0 +1,54 @@
+.cats {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.cats-nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.cats-crumbs {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.cat-item {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2rem;
+}
+
+.cat-item:hover {
+    cursor: pointer;
+}
+
+.cat-item:hover .cat-item-label,
+.cat-item:hover .cat-item-carret
+{
+    color: rgb(83, 83, 194)
+}
+
+.cat-item-label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    color: #000;
+}
+
+.cat-item-carret {
+    font-size: 1rem;
+    transform: rotate(90deg);
+    margin: auto;
+    top: 0 !important;
+    color: #000;
+}
+
+.cat-item-carret-open {
+    transform: rotate(-90deg);
+    color: rgb(83, 83, 194);
+}
