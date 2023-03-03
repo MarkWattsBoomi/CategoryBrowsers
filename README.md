@@ -25,10 +25,10 @@ A title to be displayed at the top of the component.
 ## Display Columns
 We use this to tell the component which object data properties relate to each mapped field.
 Set them in the correct order.
-1: id Column
-2: lvl1 Category Column
-3: lvl2 Category Column
-4: lvl3 Category Column
+- 1: id Column
+- 2: lvl1 Category Column
+- 3: lvl2 Category Column
+- 4: lvl3 Category Column
 
 ## Attributes
 ### searchStringFieldName
