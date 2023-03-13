@@ -45,10 +45,11 @@ export default class CategoryBrowser extends FlowComponent {
     loadCategories() {
         let selectedId: string;
         let conf: CategoryConfig = new CategoryConfig();
-        conf.idColumn = this.model.displayColumns[0].developerName;
-        conf.lvl1Column = this.model.displayColumns[1].developerName;
-        conf.lvl2Column = this.model.displayColumns[2].developerName;
-        conf.lvl3Column = this.model.displayColumns[3].developerName;
+        conf.idColumn = this.model.displayColumns[0]?.developerName;
+        conf.lvl1Column = this.model.displayColumns[1]?.developerName;
+        conf.lvl2Column = this.model.displayColumns[2]?.developerName;
+        conf.lvl3Column = this.model.displayColumns[3]?.developerName;
+        conf.idSepCharacter = this.getAttribute("idSeparatorCharacter","-");
         this.model.dataSource.items.forEach((item: FlowObjectData) => {
             if(item.isSelected) {
                 selectedId=item.properties[conf.idColumn]?.value as string;

@@ -9,6 +9,32 @@ It then displays collapsible sections for the groups.
 Grouped items are selectable via check boxes.
 Selected items are stored back to the state list value.
 
+The data should contain every possible value including the core level 1 values e.g.
+````
+[
+    {
+        "id":"001",
+        "lvl1":"Hardware"
+    },
+    {
+        "id":"001-001",
+        "lvl1":"Hardware",
+        "lvl2":"Nuts & Bolts"
+    },
+    {
+        "id":"001-001-001",
+        "lvl1":"Hardware",
+        "lvl2":"Nuts & Bolts";
+        "lvl3":"Nuts"
+    },
+    {
+        "id":"001-001-002",
+        "lvl1":"Hardware",
+        "lvl2":"Nuts & Bolts";
+        "lvl3":"Bolts"
+    }
+]
+````
 ## Component Definition
 There is a .component file in the project root folder to import into Flow.
 It will need re-pointing to your local copy of the .js & .css files.
@@ -31,6 +57,9 @@ Set them in the correct order.
 - 4: lvl3 Category Column
 
 ## Attributes
+### idSeparatorCharacter
+This tells the component how to split up the id value, provide a string;
+
 ### searchStringFieldName
 This tells the component the name of the Flow value to store the search input box's value into.
 

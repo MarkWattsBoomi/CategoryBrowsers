@@ -2,6 +2,7 @@ import { FlowObjectData, FlowObjectDataArray } from "flow-component-model";
 
 export class CategoryConfig {
     idColumn: string;
+    idSepCharacter: string;
     lvl1Column: string;
     lvl2Column: string;
     lvl3Column: string;
@@ -29,14 +30,14 @@ export class Categories {
         while(orphans.length > 0 && loops > 0) {
             for(let pos = 0 ; pos < orphans.length ; pos++) {
                 if(orphans[pos]) {
-                    let bits: string[] = orphans[pos].id.split("-");
+                    let bits: string[] = orphans[pos].id.split(conf.idSepCharacter);
                     if(bits.length === 1) {
                         cats.add(bits[0],orphans[pos]);
                         orphans[pos]=null;
                     }
                     else {
                         if(cats.items.has(bits[0])) {
-                            if(cats.items.get(bits[0]).home(orphans[pos]) === true) {
+                            if(cats.items.get(bits[0]).home(orphans[pos], conf) === true) {
                                 orphans[pos]=null;
                             }
                         }
@@ -99,10 +100,10 @@ export class Category {
         return cat;
     }
 
-    home(cat: Category): boolean {
+    home(cat: Category, conf: CategoryConfig): boolean {
         if(cat.id.startsWith(this.id)) {
             let chld: string = cat.id.substring(this.id.length + 1);
-            let bits: string[] = chld.split("-");
+            let bits: string[] = chld.split(conf.idSepCharacter);
             if(bits.length===1) {
                 if(!this.children.has(bits[0])) {
                     cat.parent = this;
@@ -112,7 +113,7 @@ export class Category {
             }
             else {
                 if(this.children.has(bits[0])) {
-                    if(this.children.get(bits[0]).home(cat) === true){
+                    if(this.children.get(bits[0]).home(cat, conf) === true){
                         return true;
                     }
                     else {
