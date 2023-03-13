@@ -4,10 +4,9 @@ CategoryBrowser
 ## Function
 The component takes a list of hierarchical categories via the data source.
 It interprets the data into a consistent internal model using the attributes to map the datasource object properties.
-It groups the items based on the groupByProperty.
-It then displays collapsible sections for the groups.
-Grouped items are selectable via check boxes.
-Selected items are stored back to the state list value.
+You must send in all the hierarchical levels !!
+
+It stores the selected category into the state and stores the search string into the specified Flow value.
 
 The data should contain every possible value including the core level 1 values e.g.
 ````
@@ -43,7 +42,7 @@ It will need re-pointing to your local copy of the .js & .css files.
 A list of cayegories to display.
 
 ## State
-An object of the same type as the datasource to receive the selected item.
+An object of the same type as the datasource to receive the selected category item.
 
 ## Label
 A title to be displayed at the top of the component.
