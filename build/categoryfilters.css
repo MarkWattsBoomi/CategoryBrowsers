@@ -673,6 +673,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 60vh;
+    height: 60vh;
     z-index: 10000;
     overflow-x: auto;
 }
@@ -697,7 +698,7 @@
 }
 
 .cat-expand-sec-title-carret {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
     margin: auto auto auto 0.5rem;
     top: 0 !important;
     cursor: pointer;
