@@ -10,4 +10,5 @@
     flex-wrap: wrap;
     max-height: 60vh;
     z-index: 10000;
+    overflow-x: auto;
 }

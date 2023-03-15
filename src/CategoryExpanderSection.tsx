@@ -10,6 +10,9 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
     constructor(props: any) {
         super(props);
         this.selectCategory = this.selectCategory.bind(this);
+        this.expand = this.expand.bind(this);
+        this.colapse = this.colapse.bind(this);
+        this.state={expanded: false}
     }
 
     selectCategory(id: string) {
@@ -18,35 +21,83 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
         parent.selectCategory(id);
     }
 
+    expand() {
+        let root: CategoryBrowser = this.props.root;
+        let cat: Category = this.props.category;
+        let parent: CategoryExpanderSection = this.props.parent;
+        if(parent) {
+            parent.colapse(parent.props.category.id);
+        }
+        this.setState({expanded: !this.state.expanded});
+    }
+
+    colapse(exclude: string) {
+        let root: CategoryBrowser = this.props.root;
+        let cat: Category = this.props.category;
+        if(cat.id != exclude) {
+            this.setState({expanded: false});
+        }
+    }
+
     render() {
 
         let root: CategoryBrowser = this.props.root;
         let cat: Category = this.props.category;
+        let className: string = "cat-expand-sec cat-expand-sec-" + this.props.level
 
         let sections: any[] = [];
-        cat.children.forEach((child: Category) => {
-            sections.push(
-                <div
-                    className="cat-expand-sec-item"
-                    onClick={(e: any) => {this.selectCategory(child.id)}}
-                >
-                    {child.title}
-                </div>
-            );
-        });
+        let carret: any;
+        if(cat.children?.size > 0) {
+            if(this.state.expanded) {
+                cat.children.forEach((child: Category) => {
+                    sections.push(
+                        <CategoryExpanderSection 
+                            root={root}
+                            parent={this}
+                            category={child}
+                            level={this.props.level+1}
+                        />
+                    );
+                });
+                carret = (
+                    <span
+                        className="cat-expand-sec-title-carret-open glyphicon glyphicon-play"
+                        onClick={this.expand}
+                    />
+                );
+            }
+            else {
+                carret = (
+                    <span
+                        className="glyphicon glyphicon-play"
+                        onClick={this.expand}
+                    />
+                );
+            }
+        }
 
         return(
             <div
-                className="cat-expand-sec"
+                className={className}
             >
                 <div
                     className="cat-expand-sec-title"
                 >
-                    <span
-                        onClick={(e: any) => {this.selectCategory(cat.id)}}
+                    <div 
+                        className="cat-expand-sec-title-label"
                     >
-                        {cat.title}
-                    </span>
+                        <span
+                            onClick={(e: any) => {this.selectCategory(cat.id)}}
+                        >
+                            {cat.title}
+                        </span>
+                    </div>
+                    <div 
+                        className="cat-expand-sec-title-carret"
+                    >
+                        {carret}
+                    </div>
+                    
                 </div>
                 <div
                     className="cat-expand-sec-body"

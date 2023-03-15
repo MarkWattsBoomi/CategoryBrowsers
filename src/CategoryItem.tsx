@@ -5,6 +5,8 @@ import React from "react";
 
 export default class CategoryItem extends React.Component<any,any> {
 
+    cat: Category;
+
     constructor(props: any) {
         super(props);
         this.expandCategory = this.expandCategory.bind(this);
@@ -13,16 +15,22 @@ export default class CategoryItem extends React.Component<any,any> {
     expandCategory() {
         let root: CategoryBrowser = this.props.root;
         let cat: Category = this.props.category;
-        root.expandCategory(cat);
+        root.expandCategory(this.cat);
     }
 
     render() {
 
         let root: CategoryBrowser = this.props.root;
-        let cat: Category = this.props.category;
+        this.cat = this.props.category;
+        if(!this.cat) {
+            this.cat = new Category();
+            this.cat.id = crypto.randomUUID();
+            this.cat.title="Categories";
+            this.cat.children=root.categories?.items;
+        }
 
         let carret: any;
-        if(root.state.expandedCategory === cat.id) {
+        if(root.state.expandedCategory === this.cat.id) {
             carret = (
                 <span
                     className="cat-item-carret cat-item-carret-open glyphicon glyphicon-play"
@@ -44,7 +52,7 @@ export default class CategoryItem extends React.Component<any,any> {
                 <span
                     className="cat-item-label"
                 >
-                    {cat.title}
+                    {this.cat.title}
                 </span>
                 {carret}
             </div>

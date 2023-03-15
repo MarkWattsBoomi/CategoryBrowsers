@@ -140,6 +140,7 @@ export default class CategoryBrowser extends FlowComponent {
         }
 
         let items: any[] = [];
+        /*
         this.categories?.items.forEach((cat: Category) => {
             items.push(
                 <CategoryItem 
@@ -148,6 +149,13 @@ export default class CategoryBrowser extends FlowComponent {
                 />
             );
         });
+        */
+        items.push(
+            <CategoryItem 
+                root={this}
+            />
+        );
+        
 
         let crumbs: any[] = [];
         if(this.state.selectedCategory) {
