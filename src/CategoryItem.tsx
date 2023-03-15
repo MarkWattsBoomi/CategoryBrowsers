@@ -15,7 +15,7 @@ export default class CategoryItem extends React.Component<any,any> {
     expandCategory() {
         let root: CategoryBrowser = this.props.root;
         let cat: Category = this.props.category;
-        root.expandCategory(this.cat);
+        root.expandCategory(this.cat,this.props.category?true:false);
     }
 
     render() {
@@ -25,7 +25,7 @@ export default class CategoryItem extends React.Component<any,any> {
         if(!this.cat) {
             this.cat = new Category();
             this.cat.id = crypto.randomUUID();
-            this.cat.title="Categories";
+            this.cat.title=this.props.label;
             this.cat.children=root.categories?.items;
         }
 
@@ -34,6 +34,7 @@ export default class CategoryItem extends React.Component<any,any> {
             carret = (
                 <span
                     className="cat-item-carret cat-item-carret-open glyphicon glyphicon-play"
+                    title="Collapse"
                 />
             );
         }
@@ -41,6 +42,7 @@ export default class CategoryItem extends React.Component<any,any> {
             carret = (
                 <span
                     className="cat-item-carret glyphicon glyphicon-play"
+                    title="Expand"
                 />
             );
         }

@@ -65,7 +65,7 @@ export default class CategoryBrowser extends FlowComponent {
         }
     }
 
-    expandCategory(cat: Category) {
+    expandCategory(cat: Category, forceExpanded: boolean) {
         //are we expanded ?
         if(this.state.expander) {
             // yes, but is it the passed one?
@@ -79,6 +79,7 @@ export default class CategoryBrowser extends FlowComponent {
                     <CategoryExpander 
                         root={this}
                         category={cat}
+                        expanded={forceExpanded}
                     />
                 );
                 this.setState({expander: expander, expandedCategory: cat.id});
@@ -90,6 +91,7 @@ export default class CategoryBrowser extends FlowComponent {
                 <CategoryExpander 
                     root={this}
                     category={cat}
+                    expanded={forceExpanded}
                 />
             );
     
@@ -140,21 +142,25 @@ export default class CategoryBrowser extends FlowComponent {
         }
 
         let items: any[] = [];
-        /*
-        this.categories?.items.forEach((cat: Category) => {
+
+        if(this.getAttribute("rootModeLabel","").toLowerCase().trim() === "") {
+            this.categories?.items.forEach((cat: Category) => {
+                items.push(
+                    <CategoryItem 
+                        root={this}
+                        category={cat}
+                    />
+                );
+            });
+        }
+        else {
             items.push(
                 <CategoryItem 
                     root={this}
-                    category={cat}
+                    label={this.getAttribute("rootModeLabel")}
                 />
             );
-        });
-        */
-        items.push(
-            <CategoryItem 
-                root={this}
-            />
-        );
+        }      
         
 
         let crumbs: any[] = [];
@@ -206,7 +212,6 @@ export default class CategoryBrowser extends FlowComponent {
             <div
                 style={style}
                 className='cats'
-                title="Expand Category"
             >
                 <SearchBox 
                     catBrowser={this}

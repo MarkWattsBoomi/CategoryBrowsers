@@ -12,7 +12,7 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
         this.selectCategory = this.selectCategory.bind(this);
         this.expand = this.expand.bind(this);
         this.colapse = this.colapse.bind(this);
-        this.state={expanded: false}
+        this.state={expanded: this.props.expanded || false}
     }
 
     selectCategory(id: string) {
@@ -63,6 +63,7 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
                     <span
                         className="cat-expand-sec-title-carret-open glyphicon glyphicon-play"
                         onClick={this.expand}
+                        title="Collapse"
                     />
                 );
             }
@@ -71,6 +72,7 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
                     <span
                         className="glyphicon glyphicon-play"
                         onClick={this.expand}
+                        title="Expand"
                     />
                 );
             }

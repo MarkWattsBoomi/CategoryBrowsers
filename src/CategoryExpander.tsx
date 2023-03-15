@@ -24,7 +24,7 @@ export default class CategoryExpander extends React.Component<any,any> {
 
     mouseOut(e: any) {
         let root: CategoryBrowser = this.props.root;
-        //root.collapseExpander()
+        root.collapseExpander()
     }
 
     colapse(exclude: string) {
@@ -43,6 +43,7 @@ export default class CategoryExpander extends React.Component<any,any> {
         let cat: Category = this.props.category;
 
         let sections: any[] = [];
+        let expanded: boolean = this.props.expanded;
         cat.children.forEach((child: Category) => {
             sections.push(
                 <CategoryExpanderSection 
@@ -51,8 +52,10 @@ export default class CategoryExpander extends React.Component<any,any> {
                     category={child}
                     level={0}
                     ref={(element: CategoryExpanderSection) =>{this.elements.set(child.id,element)}}
+                    expanded={expanded}
                 />
             );
+            expanded=false;
         });
 
         return(

@@ -9,6 +9,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 60vh;
+    height: 60vh;
     z-index: 10000;
     overflow-x: auto;
 }

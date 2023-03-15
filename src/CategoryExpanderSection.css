@@ -19,7 +19,7 @@
 }
 
 .cat-expand-sec-title-carret {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
     margin: auto auto auto 0.5rem;
     top: 0 !important;
     cursor: pointer;
