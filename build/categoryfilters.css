@@ -671,7 +671,7 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     max-height: 60vh;
     height: 60vh;
     z-index: 10000;
@@ -679,7 +679,7 @@
 }
 .cat-expand-sec {
     margin-left: 1rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0.3rem;
     display: flex;
     flex-direction: column;
 }
