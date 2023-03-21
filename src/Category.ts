@@ -66,9 +66,9 @@ export class Categories {
         let cat: Category;
         if(id && id !== "???") {
             
-            let bits: string[] = id.split("-");
+            let bits: string[] = id.split(this.conf.idSepCharacter);
             if(this.items.has(bits[0])){
-                cat=this.items.get(bits[0]).getById(id, id);
+                cat=this.items.get(bits[0]).getById(id, id, this.conf);
             }
         }
         else {
@@ -129,15 +129,15 @@ export class Category {
         
     }
 
-    getById(id: string, fullId: string) : Category {
+    getById(id: string, fullId: string, conf: CategoryConfig) : Category {
         if(this.id === fullId) {
             return this;
         }
         else {
-            let newid = id.substring(4);
-            let bits: string[] = newid.split("-");
+            let newid = id.substring(id.indexOf(conf.idSepCharacter)+1);
+            let bits: string[] = newid.split(conf.idSepCharacter);
             if(this.children.has(bits[0])){
-                return this.children.get(bits[0]).getById(newid, fullId);
+                return this.children.get(bits[0]).getById(newid, fullId,conf);
             }
         }
     }
