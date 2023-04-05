@@ -106,9 +106,18 @@ export default class CategoryBrowser extends FlowComponent {
     async selectCategory(id: string) {
         this.setState({expander: null, expandedCategory: null, selectedCategory: id});
         await this.setStateValue(this.categories.getById(id)?.objectData? this.categories.getById(id).objectData : new FlowObjectDataArray());
-        let onSelectCoutcomeName: string = this.getAttribute("selectOutcomeName","onSelect");
-        if(this.outcomes[onSelectCoutcomeName]) {
-            this.triggerOutcome(onSelectCoutcomeName);
+        if(id==="???") {
+            let onClearCoutcomeName: string = this.getAttribute("clearOutcomeName","onClear");
+            if(this.outcomes[onClearCoutcomeName]) {
+                this.triggerOutcome(onClearCoutcomeName);
+            }
+        }
+        else {
+            
+            let onSelectCoutcomeName: string = this.getAttribute("selectOutcomeName","onSelect");
+            if(this.outcomes[onSelectCoutcomeName]) {
+                this.triggerOutcome(onSelectCoutcomeName);
+            }   
         }
     }
 

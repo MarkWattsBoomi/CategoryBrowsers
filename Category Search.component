@@ -1,6 +1,8 @@
 {
   "attributes": {
-    "searchOutcomeName": "The name of the outcome to trigger when the user selectes to search.",
+    "rootModeLabel": "If specified this label is used to display the category picker as a singe root node rather than the default where each lvl 1 item is shown.",
+    "clearOutcomeName": "The name of the outcome to trigger when the user selects to cleat the category selection..",
+    "searchOutcomeName": "The name of the outcome to trigger when the user selects to search.",
     "selectOutcomeName": "The name of the outcome to trigger when the user selects a category.",
     "idSeparatorCharacter": "The string to be used to split up the category ID field.  Defaults to \"-\".",
     "searchStringFieldName": "The name of a Flow value to receive the user entered search string."
@@ -13,7 +15,7 @@
     "STATE_VALUE"
   ],
   "dateCreated": "0001-01-01T00:00:00+00:00",
-  "dateModified": "2023-03-13T09:47:41.0774013+00:00",
+  "dateModified": "2023-04-05T11:24:33.3971461+00:00",
   "designTimeImageURL": null,
   "designTimeRenderType": null,
   "developerName": "Category Search",
@@ -22,8 +24,8 @@
   "icon": "Browser",
   "id": "a40ea816-5b99-42cb-b735-ab13ee38c4c9",
   "key": "categorybrowser",
-  "legacyScriptURL": "http://localhost:8081/categoryfilters.js",
-  "legacyStyleSheetURL": "http://localhost:8081/categoryfilters.css",
+  "legacyScriptURL": "http://localhost:8080/categoryfilters.js",
+  "legacyStyleSheetURL": "http://localhost:8080/categoryfilters.css",
   "scriptURL": null,
   "styleSheetURL": null,
   "whoCreated": {
