@@ -163,10 +163,10 @@ export class Category {
         sorted.sort((a,b) => {
             let aPre: string = a.id.substring(a.id.lastIndexOf(sep)).replace(sep,"");
             let bPre: string = b.id.substring(b.id.lastIndexOf(sep)).replace(sep,"");
-            if(a.title.replace(aPre,"") > b.title.replace(bPre,"")) {
+            if(a.title > b.title) {
                 return 1;
             }
-            if(a.title.replace(aPre,"") < b.title.replace(bPre,"")) {
+            if(a.title < b.title) {
                 return -1;
             }
             return 0;
