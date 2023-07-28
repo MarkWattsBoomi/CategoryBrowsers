@@ -27,6 +27,7 @@ export default class CategoryItem extends React.Component<any,any> {
             this.cat.id = crypto.randomUUID();
             this.cat.title=this.props.label;
             this.cat.children=root.categories?.items;
+            this.cat.conf=root.categories?.conf;
         }
 
         let carret: any;

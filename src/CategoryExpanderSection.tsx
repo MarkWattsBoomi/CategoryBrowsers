@@ -49,7 +49,8 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
         let carret: any;
         if(cat.children?.size > 0) {
             if(this.state.expanded) {
-                cat.children.forEach((child: Category) => {
+                cat.getSortedItems().forEach((child: Category) => {
+                //cat.children.forEach((child: Category) => {
                     sections.push(
                         <CategoryExpanderSection 
                             root={root}

@@ -44,7 +44,8 @@ export default class CategoryExpander extends React.Component<any,any> {
 
         let sections: any[] = [];
         let expanded: boolean = this.props.expanded;
-        cat.children.forEach((child: Category) => {
+        cat.getSortedItems().forEach((child: Category) => {
+        //cat.children.forEach((child: Category) => {
             sections.push(
                 <CategoryExpanderSection 
                     root={root}

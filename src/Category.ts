@@ -37,7 +37,7 @@ export class Categories {
                     }
                     else {
                         if(cats.items.has(bits[0])) {
-                            if(cats.items.get(bits[0]).home(orphans[pos], conf) === true) {
+                            if(cats.items.get(bits[0]).home(orphans[pos]) === true) {
                                 orphans[pos]=null;
                             }
                         }
@@ -52,9 +52,6 @@ export class Categories {
             }
             loops--;
         }
-
-        
-
         return cats;
     }
 
@@ -68,7 +65,7 @@ export class Categories {
             
             let bits: string[] = id.split(this.conf.idSepCharacter);
             if(this.items.has(bits[0])){
-                cat=this.items.get(bits[0]).getById(id, id, this.conf);
+                cat=this.items.get(bits[0]).getById(id, id);
             }
         }
         else {
@@ -76,8 +73,20 @@ export class Categories {
             cat.id = "???";
             cat.title = "Clear";
             cat.objectData = null;
+            cat.conf = this.conf;
         }
         return cat;
+    }
+
+    getSortedItems() : Array<Category> {
+        //sort by ignoring the item's key
+        let sorted: Array<Category> = Array.from(this.items.values());
+        sorted.sort((a,b) => {
+            if(a.title.replace(a.id,"") > b.title.replace(b.id,"")) return 1;
+            if(a.title.replace(a.id,"") < b.title.replace(b.id,"")) return -1;
+            return 0;
+        });
+        return sorted;
     }
 }
 
@@ -87,6 +96,7 @@ export class Category {
     parent: Category;
     children: Map<string, Category>;
     objectData: FlowObjectData;
+    conf: CategoryConfig;
 
     constructor() {
         this.children = new Map();
@@ -94,16 +104,20 @@ export class Category {
 
     public static parse(item: FlowObjectData, conf: CategoryConfig) : Category {
         let cat: Category = new Category();
+        cat.conf = conf;
         cat.objectData = item;
-        cat.id = item.properties[conf.idColumn]?.value as string;
-        cat.title = item.properties[conf.lvl3Column]?.value as string || item.properties[conf.lvl2Column]?.value as string || item.properties[conf.lvl1Column]?.value as string;
+        cat.id = item.properties[cat.conf.idColumn]?.value as string;
+        cat.title = item.properties[cat.conf.lvl3Column]?.value as string || item.properties[cat.conf.lvl2Column]?.value as string || item.properties[cat.conf.lvl1Column]?.value as string;
+        if(!cat.conf){
+            console.log("ping");
+        }
         return cat;
     }
 
-    home(cat: Category, conf: CategoryConfig): boolean {
+    home(cat: Category): boolean {
         if(cat.id.startsWith(this.id)) {
             let chld: string = cat.id.substring(this.id.length + 1);
-            let bits: string[] = chld.split(conf.idSepCharacter);
+            let bits: string[] = chld.split(this.conf.idSepCharacter);
             if(bits.length===1) {
                 if(!this.children.has(bits[0])) {
                     cat.parent = this;
@@ -113,7 +127,7 @@ export class Category {
             }
             else {
                 if(this.children.has(bits[0])) {
-                    if(this.children.get(bits[0]).home(cat, conf) === true){
+                    if(this.children.get(bits[0]).home(cat) === true){
                         return true;
                     }
                     else {
@@ -129,17 +143,35 @@ export class Category {
         
     }
 
-    getById(id: string, fullId: string, conf: CategoryConfig) : Category {
+    getById(id: string, fullId: string) : Category {
         if(this.id === fullId) {
             return this;
         }
         else {
-            let newid = id.substring(id.indexOf(conf.idSepCharacter)+1);
-            let bits: string[] = newid.split(conf.idSepCharacter);
+            let newid = id.substring(id.indexOf(this.conf.idSepCharacter)+1);
+            let bits: string[] = newid.split(this.conf.idSepCharacter);
             if(this.children.has(bits[0])){
-                return this.children.get(bits[0]).getById(newid, fullId,conf);
+                return this.children.get(bits[0]).getById(newid, fullId);
             }
         }
+    }
+
+    getSortedItems() : Array<Category> {
+        //sort by ignoring the item's key
+        let sorted: Array<Category> = Array.from(this.children.values());
+        let sep: string = this.conf.idSepCharacter;
+        sorted.sort((a,b) => {
+            let aPre: string = a.id.substring(a.id.lastIndexOf(sep)).replace(sep,"");
+            let bPre: string = b.id.substring(b.id.lastIndexOf(sep)).replace(sep,"");
+            if(a.title.replace(aPre,"") > b.title.replace(bPre,"")) {
+                return 1;
+            }
+            if(a.title.replace(aPre,"") < b.title.replace(bPre,"")) {
+                return -1;
+            }
+            return 0;
+        });
+        return sorted;
     }
 
 }

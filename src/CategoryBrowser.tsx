@@ -155,7 +155,8 @@ export default class CategoryBrowser extends FlowComponent {
         let items: any[] = [];
 
         if(this.getAttribute("rootModeLabel","").toLowerCase().trim() === "") {
-            this.categories?.items.forEach((cat: Category) => {
+            this.categories.getSortedItems().forEach((cat: Category) => {
+            //this.categories?.items.forEach((cat: Category) => {
                 items.push(
                     <CategoryItem 
                         root={this}
