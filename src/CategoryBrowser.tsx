@@ -121,16 +121,18 @@ export default class CategoryBrowser extends FlowComponent {
         }
     }
 
-    async setSearchString(searchString: string) {
+    async setSearchString(searchString: string, supress: boolean) {
         let srchStringFieldName: string = this.getAttribute("searchStringFieldName");
         if(srchStringFieldName) {
             let srchStringField: FlowField = await this.loadValue(srchStringFieldName);
             if(srchStringField) {
                 srchStringField.value = searchString;
                 await this.updateValues(srchStringField);
-                let onSearchCoutcomeName: string = this.getAttribute("searchOutcomeName","onSearch");
-                if(this.outcomes[onSearchCoutcomeName]) {
-                    this.triggerOutcome(onSearchCoutcomeName);
+                if(supress !== true) {
+                    let onSearchCoutcomeName: string = this.getAttribute("searchOutcomeName","onSearch");
+                    if(this.outcomes[onSearchCoutcomeName]) {
+                        this.triggerOutcome(onSearchCoutcomeName);
+                    }
                 }
             }
         }

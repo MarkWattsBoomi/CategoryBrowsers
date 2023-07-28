@@ -19,11 +19,13 @@ export default class SearchBox extends React.Component<any,any> {
 
     async search(e: any) {
         let catBrowser: CategoryBrowser = this.props.catBrowser;
-        catBrowser.setSearchString(this.state.value);
+        catBrowser.setSearchString(this.state.value, false);
     }
 
     clearSearch(e: any) {
         this.setState({value: ""});
+        let catBrowser: CategoryBrowser = this.props.catBrowser;
+        catBrowser.setSearchString("", true);
     }
 
     valChanged(e: any) {
