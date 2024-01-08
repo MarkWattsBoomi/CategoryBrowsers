@@ -650,10 +650,20 @@
 .cats-crumb-label {
     color: #2054d3;
     font-size: 1rem;
+    cursor: default;
+}
+
+.cats-crumb-label:not(.cats-crumb-label-active):hover {
+    text-decoration:line-through;
+}
+
+.cats-crumb-label-active {
+    color: #2054d3;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-.cats-crumb-label:hover {
+.cats-crumb-label-active:hover {
     text-decoration: underline;
 }
 
@@ -690,10 +700,14 @@
 }
 
 .cat-expand-sec-title-label {
+    cursor: default;
+}
+
+.cat-expand-sec-title-label-active{
     cursor: pointer;
 }
 
-.cat-expand-sec-title-label:hover {
+.cat-expand-sec-title-label-active:hover {
     text-decoration: underline;
 }
 

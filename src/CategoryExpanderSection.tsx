@@ -15,10 +15,11 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
         this.state={expanded: this.props.expanded || false}
     }
 
-    selectCategory(id: string) {
+    selectCategory(e: any) {
         let root: CategoryBrowser = this.props.root;
         let parent: CategoryExpander = this.props.parent;
-        parent.selectCategory(id);
+        let cat: Category = this.props.category;
+        root.selectCategory(cat.id);
     }
 
     expand() {
@@ -79,6 +80,14 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
             }
         }
 
+        let onClick: any;
+        let catClass: string = "cat-expand-sec-title-label";
+ 
+        if(cat.enabled===true) {
+            onClick=this.selectCategory;
+            catClass += " cat-expand-sec-title-label-active"
+        }
+
         return(
             <div
                 className={className}
@@ -87,10 +96,10 @@ export default class CategoryExpanderSection extends React.Component<any,any> {
                     className="cat-expand-sec-title"
                 >
                     <div 
-                        className="cat-expand-sec-title-label"
+                        className={catClass}
                     >
                         <span
-                            onClick={(e: any) => {this.selectCategory(cat.id)}}
+                            onClick={onClick}
                         >
                             {cat.title}
                         </span>

@@ -6,6 +6,7 @@ export class CategoryConfig {
     lvl1Column: string;
     lvl2Column: string;
     lvl3Column: string;
+    enabledColumn: string;
 }
 
 export class Categories {
@@ -97,6 +98,7 @@ export class Category {
     children: Map<string, Category>;
     objectData: FlowObjectData;
     conf: CategoryConfig;
+    enabled: boolean;
 
     constructor() {
         this.children = new Map();
@@ -108,6 +110,7 @@ export class Category {
         cat.objectData = item;
         cat.id = item.properties[cat.conf.idColumn]?.value as string;
         cat.title = item.properties[cat.conf.lvl3Column]?.value as string || item.properties[cat.conf.lvl2Column]?.value as string || item.properties[cat.conf.lvl1Column]?.value as string;
+        cat.enabled = ("" + (item.properties[cat.conf.enabledColumn]?.value as string)?.toLowerCase() === "no")? false : true;
         if(!cat.conf){
             console.log("ping");
         }

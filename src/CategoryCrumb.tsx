@@ -18,14 +18,21 @@ export default class CategoryCrumb extends React.Component<any,any> {
 
     render() {
 
+        let onClick: any;
+        let catClass: string = "cats-crumb-label";
         let cat: Category = this.props.category;
+
+        if(cat.id==="???" || cat.enabled===true) {
+            onClick=this.selectCategory;
+            catClass += " cats-crumb-label-active"
+        }
         return (
             <div
                 className="cats-crumb"
             >
                 <span
-                    className="cats-crumb-label"
-                    onClick={this.selectCategory}
+                    className={catClass}
+                    onClick={onClick}
                 >
                     {cat.title}
                 </span>

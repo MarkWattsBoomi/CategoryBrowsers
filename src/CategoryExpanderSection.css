@@ -11,10 +11,14 @@
 }
 
 .cat-expand-sec-title-label {
+    cursor: default;
+}
+
+.cat-expand-sec-title-label-active{
     cursor: pointer;
 }
 
-.cat-expand-sec-title-label:hover {
+.cat-expand-sec-title-label-active:hover {
     text-decoration: underline;
 }
 

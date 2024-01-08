@@ -50,6 +50,7 @@ export default class CategoryBrowser extends FlowComponent {
         conf.lvl2Column = this.model.displayColumns[2]?.developerName;
         conf.lvl3Column = this.model.displayColumns[3]?.developerName;
         conf.idSepCharacter = this.getAttribute("idSeparatorCharacter","-");
+        conf.enabledColumn = this.getAttribute("enabledAttribute","Active");
         this.model.dataSource.items.forEach((item: FlowObjectData) => {
             if(item.isSelected) {
                 selectedId=item.properties[conf.idColumn]?.value as string;

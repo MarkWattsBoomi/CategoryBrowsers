@@ -5,7 +5,8 @@
     "searchOutcomeName": "The name of the outcome to trigger when the user selects to search.",
     "selectOutcomeName": "The name of the outcome to trigger when the user selects a category.",
     "idSeparatorCharacter": "The string to be used to split up the category ID field.  Defaults to \"-\".",
-    "searchStringFieldName": "The name of a Flow value to receive the user entered search string."
+    "searchStringFieldName": "The name of a Flow value to receive the user entered search string.",
+    "enabledAttribute": "The object property name indicating if the category is selectable"
   },
   "configurationEditors": [
     "LABEL",
